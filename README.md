@@ -360,7 +360,7 @@ AI agent instructions based on the [Universal AI Agent Safety Template](https://
 ---
 
 License
-
+```
 The MIT License applies only to:
   - /TEMPLATE.md
   - /examples/cloud-infra.md

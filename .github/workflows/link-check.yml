@@ -22,10 +22,13 @@ jobs:
         # Non-blocking: external links rot over time (moved docs, bot-blocking
         # sites like Reddit/Azure portal) independent of any given PR's diff.
         # Report findings without gating merges on inherited link drift.
+        # --include-verbatim: also scan URLs inside fenced code blocks. The README
+        # "Before vs. After" sample and the examples' Sources lists live in code
+        # blocks; without this flag lychee never saw them (v1.15 post-mortem).
         continue-on-error: true
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8
         with:
-          args: --verbose --no-progress '*.md' 'examples/*.md'
+          args: --verbose --no-progress --include-verbatim '*.md' 'examples/*.md'
           fail: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

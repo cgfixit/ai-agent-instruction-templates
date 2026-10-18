@@ -2,9 +2,9 @@
 (With specific examples)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Azure AI/ MS Copilot Studio](https://img.shields.io/badge/Azure%20AI-Compatible-0078D4)](https://azure.microsoft.com/en-us/products/ai-services/openai-service)
-[![DevSkim Security Analysis](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/devskim.yml/badge.svg)](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/devskim.yml)
-[![Gitleaks Secret Scan](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/gitleaks.yml/badge.svg)](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/gitleaks.yml)
+[![Azure AI/ MS Copilot Studio](https://img.shields.io/badge/Azure%20AI-Compatible-0078D4)](https://azure.microsoft.com/en-us/products/ai-foundry/models/openai/)
+[![DevSkim Security Analysis](https://github.com/cgfixit/ai-agent-instruction-templates/actions/workflows/devskim.yml/badge.svg)](https://github.com/cgfixit/ai-agent-instruction-templates/actions/workflows/devskim.yml)
+[![Gitleaks Secret Scan](https://github.com/cgfixit/ai-agent-instruction-templates/actions/workflows/gitleaks.yml/badge.svg)](https://github.com/cgfixit/ai-agent-instruction-templates/actions/workflows/gitleaks.yml)
 
 ---
 
@@ -12,7 +12,7 @@
 
 **The Problem:** Large Language Models hallucinate technical details, hedge or deceive when proven incorrect, mix up software versions or similar sounding words or concepts, and confidently provide outdated instructions/information. In engineering, finance, healthcare, legal, technical support and/or compliance-heavy domains, this is unacceptable, dangerous and costly.
 
-**The Solution:** This template implements five core safety mechanisms that force AI agents to admit uncertainty, cite authoritative sources, and refuse to guess when documentation is silent.
+**The Solution:** This template implements five core safety mechanisms (listed under [What Makes This Different](#what-makes-this-different)) that force AI agents to admit uncertainty, cite authoritative sources, and refuse to guess when documentation is silent.
 
 Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot Studio**, **ChatGPT Enterprise Workspace Agents**, **Grok Skills**, **Perplexity Pro or Max Project/Spaces instruction supplement**, **agentic coding harnesses/tools**, **OpenAI Responses API** (successor to the retired Assistants API), **Anthropic Claude Projects and Claude Code**, **generic MCP server connectors**, and similar AI/agent frameworks.
 
@@ -22,7 +22,7 @@ Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot S
 
 | Problem | Solution |
 |---------|----------|
-| 🚨 **Hallucinations** | 3-Tier source hierarchy (official internal or highly reputable sources/docs > Marketing Whitepapers > Personal Tech Notes ;) |
+| 🚨 **Hallucinations** | 3-Tier source hierarchy: Tier 1 official versioned docs > Tier 2 vendor best-practice and community sources cross-checked against Tier 1 > Tier 3 personal/internal notes, advisory only (yes, marketing whitepapers live in Tier 2 ;) |
 | 📅 **Version drift** | Mandatory version validation in every tutorial via agentic skill/tool call |
 | 🔐 **Security risks** | Tool scoping + PII protection + audit logging (optional) + sensitive language filters |
 | ❓ **Scope creep** | Environment clarification rules force specificity to ask for clarity on context or state conflicting answers in corpus scope |
@@ -57,7 +57,7 @@ before deploying a new domain example on GPT-5.6 Sol.
 
 | You are deploying to… | Take… |
 |---|---|
-| Azure OpenAI o3 / o4-mini, Copilot Studio, Claude Projects | the base `examples/<domain>.md` |
+| Azure OpenAI o3 / o4-mini, Copilot Studio, Claude Projects, or any platform not listed below | the base `examples/<domain>.md` |
 | ChatGPT Enterprise Workspace Agents or the Responses API on GPT-5.6 Sol | the matching `examples/<domain>-5.6Sol.md` |
 | A domain not covered here | `TEMPLATE.md`, then follow Quick Start below |
 
@@ -66,7 +66,7 @@ before deploying a new domain example on GPT-5.6 Sol.
 ## Quick Start
 
 ### 1. Copy the Template
-Download [`TEMPLATE.md`](TEMPLATE.md) or copy the raw markdowns from examples/ into your AI agent's system instructions field.
+Download [`TEMPLATE.md`](TEMPLATE.md) or copy the raw markdown of an `examples/` file into your AI agent's system instructions field. Examples ship with every placeholder already filled, so step 2 applies only when you start from `TEMPLATE.md`.
 
 ### 2. Customize Placeholders
 Search and replace these brackets with your specific values. `TEMPLATE.md` carries
@@ -283,7 +283,7 @@ Clarification resolved: "v4.0" taken as Veeam Backup for AWS 4.0 (build 4.0.0.74
 - Veeam Backup for AWS 4.0 User Guide (archived) — "Backup Repository Encryption": https://helpcenter.veeam.com/archive/vbaws/40/guide/encryption_repository_level.html
 - Veeam Backup for AWS 4.0 User Guide (archived) — "Editing Backup Repository Settings": https://helpcenter.veeam.com/archive/vbaws/40/guide/repositories_edit.html
 - Veeam Backup for AWS 4.0 User Guide (archived) — "Repository IAM Permissions": https://helpcenter.veeam.com/archive/vbaws/40/guide/role_permissions_repo.html
-- Same sections in the current guide, used to cross-check behavior statements: https://helpcenter.veeam.com/docs/vbaws/guide/repositories_add_encryption.html · https://helpcenter.veeam.com/docs/vbaws/guide/encryption_repository_level.html · https://helpcenter.veeam.com/docs/vbaws/guide/repositories_edit.html
+- Same sections in the current guide (now part of the VBR User Guide), used to cross-check behavior statements: https://helpcenter.veeam.com/docs/vbr/userguide/aws_repositories_add_encryption.html · https://helpcenter.veeam.com/docs/vbr/userguide/aws_encryption_repository_level.html · https://helpcenter.veeam.com/docs/vbr/userguide/aws_repositories_edit.html
 - Veeam KB4361 — Build Numbers and Versions of Veeam Backup for AWS: https://www.veeam.com/kb4361
 - Veeam KB4211 — Release Information for Veeam Backup for AWS v4/v4a (VBR 11a integration requirement): https://www.veeam.com/kb4211
 - VBR User Guide — "Platform Support: Amazon Web Services" (appliance ↔ VBR build matrix): https://helpcenter.veeam.com/docs/vbr/userguide/platform_support_aws.html
@@ -323,7 +323,7 @@ Clarification resolved: "v4.0" taken as Veeam Backup for AWS 4.0 (build 4.0.0.74
 │   └── skills/                    ← preflight, new-example, sync-template, red-team, azureAI-optimize
 ├── .codex/                        ← Codex-native mirror of the skills + Python audit script
 ├── .github/workflows/             ← CI: placeholder audit, Gitleaks, DevSkim (blocking); markdownlint, lychee (advisory)
-└── LICENSE                        ← MIT License (scoped — see above)
+└── LICENSE                        ← MIT License (scoped — see License section below)
 ```
 
 ---
@@ -347,6 +347,31 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 **TL;DR:** Use this commercially, modify it, share it. Just keep the copyright notice.
 
+**Scope.** The MIT License applies only to:
+
+- `/TEMPLATE.md`
+- `/examples/cloud-infra.md`
+- `/examples/cloud-infra-5.6Sol.md`
+- `/examples/incident-response.md`
+- `/examples/incident-response-5.6Sol.md`
+- `/examples/langchain-agents.md`
+- `/examples/langchain-agents-5.6Sol.md`
+- `/examples/legal-compliance.md`
+- `/examples/legal-compliance-5.6Sol.md`
+- `/examples/manufacturing-iot.md`
+- `/examples/Network&SecurityAgent.md`
+- `/examples/Network&SecurityAgent-5.6Sol.md`
+- `/examples/ps1AgentCoder.md`
+- `/examples/ps1AgentCoder-5.6Sol.md`
+- `/examples/pythonAgentCoder.md`
+- `/examples/pythonAgentCoder-5.6Sol.md`
+- `/examples/yaragenerator.md`
+- `/examples/yaragenerator-5.6Sol.md`
+
+All company-specific files, including `/examples/veeamGPT.md` and `/examples/veeamGPT-5.6Sol.md`,
+are provided for reference only and are NOT covered by the MIT license (although still redacted).
+This block is the single authority for license scope; `CLAUDE.md` defers to it.
+
 ---
 
 ## Citation
@@ -354,34 +379,32 @@ MIT License - see [LICENSE](LICENSE) for details.
 If you use this template in production or research, a link back to this repo is appreciated:
 
 ```markdown
-AI agent instructions based on the [Universal AI Agent Safety Template](https://github.com/CGFixIt/AzureAI-CopilotStudio-PersonalAgent-Instructions/blob/main/TEMPLATE.md?plain=1)
+AI agent instructions based on the [Universal AI Agent Safety Template](https://github.com/cgfixit/ai-agent-instruction-templates/blob/main/TEMPLATE.md?plain=1)
 ```
 
 ---
 
-License
+## Version History
 
-The MIT License applies only to:
-  - /TEMPLATE.md
-  - /examples/cloud-infra.md
-  - /examples/cloud-infra-5.6Sol.md
-  - /examples/incident-response.md
-  - /examples/incident-response-5.6Sol.md
-  - /examples/langchain-agents.md
-  - /examples/langchain-agents-5.6Sol.md
-  - /examples/legal-compliance.md
-  - /examples/legal-compliance-5.6Sol.md
-  - /examples/manufacturing-iot.md
-  - /examples/Network&SecurityAgent.md
-  - /examples/Network&SecurityAgent-5.6Sol.md
-  - /examples/ps1AgentCoder.md
-  - /examples/ps1AgentCoder-5.6Sol.md
-  - /examples/pythonAgentCoder.md
-  - /examples/pythonAgentCoder-5.6Sol.md
-  - /examples/yaragenerator.md
-  - /examples/yaragenerator-5.6Sol.md
+- **v1.16** (Oct 2026): Repository renamed to `ai-agent-instruction-templates`; badge and citation URLs updated; Azure badge now targets AI Foundry; license scope moved from the page top into the License section as a proper list (a malformed fence and the accidental removal of Version History and the footer in the post-rename edit are repaired); Hallucinations row now states the real three tiers; Quick Start step 1 clarifies placeholders apply only to TEMPLATE.md; Veeam current-guide cross-check links point at their new VBR User Guide locations
+- **v1.15** (Oct 2026): Rewrote the README "Before vs. After" encryption example against Veeam Backup for AWS 4.0 / VBR 11a sources (removed fabricated wizard step, cmdlet, event ID and VBR 12 pairing; added dated validation, documented KMS constraints and verifiable sources); completed the placeholder inventory to all 24 TEMPLATE.md tokens; replaced the retired OpenAI Assistants API snippet with the Responses API; fixed the duplicated Quick Start step number; added tooling directories to the structure list; fixed the preflight C6 filename regex that false-flagged `-5.6Sol.md` files; aligned CLAUDE.md and the sync-template skill with the current 19-file `examples/` tree; follow-up: example now cites the exact archived 4.0 pages instead of the guide root
+- **v1.14** (Aug 2026): Added `examples/manufacturing-iot.md` for evidence-driven manufacturing IoT operations, OT safety, read-only diagnostics, approval-gated changes, and escalation
+- **v1.13** (Jul 2026): Added ChatGPT Enterprise personal-agent workspace, RBAC, connector, and evidence boundaries to every GPT-5.6 Sol example and documented a least-privilege Enterprise deployment path
+- **v1.12** (Jul 2026): Added a GPT-5.6 Sol-tailored `-5.6Sol.md` counterpart for every deployable example while retaining the complete o3-focused set
+- **v1.11** (Jul 2026): Added `examples/langchain-agents.md` for governed Deep Agents harnesses using local open-weight models, scoped tools, deterministic evaluation, human approval, and pinned CyClaw references
+- **v1.10** (Jul 2026): Tightened `examples/legal-compliance.md` to better match the template standard with explicit response rules, removed internal notes in examples agent instructions (a paste artifact and a todo list ;)), connected-tool/data-access guidance, and stronger validation expectations via agentic skills/tools to force examples/ to align with template file every so often, optimized for o3 since usually its your companies money paying if you care this much about it being correct.. wait isnt that backwards ;)
+- **v1.9** (Jul 2026): Aligned the README example inventory and license scope with the current `examples/` tree, and cleaned stale placeholder/paste artifacts from the o3-focused example set
+- **v1.8** (Jul 2026): Pinned GitHub Actions workflow dependencies to exact commit SHAs for supply-chain hardening; `examples/legal-compliance.md` remains listed in the repository structure and MIT scope
+- **v1.7** (Jul 2026): Added `examples/legal-compliance.md` (modern technology compliance, AI governance, privacy, cybersecurity disclosure, and evidence mapping)
+- **v1.6** (Jul 2026): Rewrote CLAUDE.md as a full operating manual; [***] added `preflight` (local CI mirror), `new-example`, `sync-template`, and `red-team` skills; fixed README filename drift and removed a leftover chat artifact from `Network&SecurityAgent.md`
+- **v1.5** (Jun 2026): Added `examples/incident-response.md` (DevOps incident response & SRE) via `/azureAI-optimize`
+- **v1.4** (Jun 2026): Added o3 Reasoning Protocol to TEMPLATE.md and all examples; added missing Escalation/Security sections; added CI workflows (placeholder-audit, markdown-lint, link-check); security hardening (Dependabot, CODEOWNERS, .gitattributes); fixed README structure and license filename drift
+- **v1.3** (May 2026): Added several new agent instructions under examples/
+- **v1.2** (Dec 2025): Added Azure "on your data" grounding rule, audit logging, normalized formatting
+- **v1.1** (Dec 2025): Added Tool & Data Access info, Security & Privacy, ethical guardrails
+- **v1.0** (Dec 2025): Initial public release, based on production deployment at global enterprise software company
 
-All company-specific files, including /examples/veeamGPT.md and
-/examples/veeamGPT-5.6Sol.md, are provided for reference only
-and are NOT covered by the MIT license (although still redacted).
-```
+---
+
+**Built with <a href="https://linktr.ee/cgrady92">❤️</a> for teams who need AI agents that admit when they don't know.**
+<img width="134" height="28" alt="image" src="https://github.com/user-attachments/assets/e546f130-9574-466a-aecd-142ec051c215" />

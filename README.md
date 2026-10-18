@@ -5,34 +5,7 @@
 [![Azure AI/ MS Copilot Studio](https://img.shields.io/badge/Azure%20AI-Compatible-0078D4)](https://azure.microsoft.com/en-us/products/ai-services/openai-service)
 [![DevSkim Security Analysis](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/devskim.yml/badge.svg)](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/devskim.yml)
 [![Gitleaks Secret Scan](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/gitleaks.yml/badge.svg)](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/gitleaks.yml)
-```
-License
--------
 
-The MIT License applies only to:
-  - /TEMPLATE.md
-  - /examples/cloud-infra.md
-  - /examples/cloud-infra-5.6Sol.md
-  - /examples/incident-response.md
-  - /examples/incident-response-5.6Sol.md
-  - /examples/langchain-agents.md
-  - /examples/langchain-agents-5.6Sol.md
-  - /examples/legal-compliance.md
-  - /examples/legal-compliance-5.6Sol.md
-  - /examples/manufacturing-iot.md
-  - /examples/Network&SecurityAgent.md
-  - /examples/Network&SecurityAgent-5.6Sol.md
-  - /examples/ps1AgentCoder.md
-  - /examples/ps1AgentCoder-5.6Sol.md
-  - /examples/pythonAgentCoder.md
-  - /examples/pythonAgentCoder-5.6Sol.md
-  - /examples/yaragenerator.md
-  - /examples/yaragenerator-5.6Sol.md
-
-All company-specific files, including /examples/veeamGPT.md and
-/examples/veeamGPT-5.6Sol.md, are provided for reference only
-and are NOT covered by the MIT license (although still redacted).
-```
 ---
 
 ## Why This AI Personal Agent Instruction Template Exists
@@ -386,26 +359,29 @@ AI agent instructions based on the [Universal AI Agent Safety Template](https://
 
 ---
 
-## Version History
+License
 
-- **v1.15** (Oct 2026): Rewrote the README "Before vs. After" encryption example against Veeam Backup for AWS 4.0 / VBR 11a sources (removed fabricated wizard step, cmdlet, event ID and VBR 12 pairing; added dated validation, documented KMS constraints and verifiable sources); completed the placeholder inventory to all 24 TEMPLATE.md tokens; replaced the retired OpenAI Assistants API snippet with the Responses API; fixed the duplicated Quick Start step number; added tooling directories to the structure list; fixed the preflight C6 filename regex that false-flagged `-5.6Sol.md` files; aligned CLAUDE.md and the sync-template skill with the current 19-file `examples/` tree; follow-up: example now cites the exact archived 4.0 pages instead of the guide root
-- **v1.14** (Aug 2026): Added `examples/manufacturing-iot.md` for evidence-driven manufacturing IoT operations, OT safety, read-only diagnostics, approval-gated changes, and escalation
-- **v1.13** (Jul 2026): Added ChatGPT Enterprise personal-agent workspace, RBAC, connector, and evidence boundaries to every GPT-5.6 Sol example and documented a least-privilege Enterprise deployment path
-- **v1.12** (Jul 2026): Added a GPT-5.6 Sol-tailored `-5.6Sol.md` counterpart for every deployable example while retaining the complete o3-focused set
-- **v1.11** (Jul 2026): Added `examples/langchain-agents.md` for governed Deep Agents harnesses using local open-weight models, scoped tools, deterministic evaluation, human approval, and pinned CyClaw references
-- **v1.10** (Jul 2026): Tightened `examples/legal-compliance.md` to better match the template standard with explicit response rules, removed internal notes in examples agent instructions (a paste artifact and a todo list ;)), connected-tool/data-access guidance, and stronger validation expectations via agentic skills/tools to force examples/ to align with template file every so often, optimized for o3 since usually its your companies money paying if you care this much about it being correct.. wait isnt that backwards ;)
-- **v1.9** (Jul 2026): Aligned the README example inventory and license scope with the current `examples/` tree, and cleaned stale placeholder/paste artifacts from the o3-focused example set
-- **v1.8** (Jul 2026): Pinned GitHub Actions workflow dependencies to exact commit SHAs for supply-chain hardening; `examples/legal-compliance.md` remains listed in the repository structure and MIT scope
-- **v1.7** (Jul 2026): Added `examples/legal-compliance.md` (modern technology compliance, AI governance, privacy, cybersecurity disclosure, and evidence mapping)
-- **v1.6** (Jul 2026): Rewrote CLAUDE.md as a full operating manual; [***] added `preflight` (local CI mirror), `new-example`, `sync-template`, and `red-team` skills; fixed README filename drift and removed a leftover chat artifact from `Network&SecurityAgent.md`
-- **v1.5** (Jun 2026): Added `examples/incident-response.md` (DevOps incident response & SRE) via `/azureAI-optimize`
-- **v1.4** (Jun 2026): Added o3 Reasoning Protocol to TEMPLATE.md and all examples; added missing Escalation/Security sections; added CI workflows (placeholder-audit, markdown-lint, link-check); security hardening (Dependabot, CODEOWNERS, .gitattributes); fixed README structure and license filename drift
-- **v1.3** (May 2026): Added several new agent instructions under examples/
-- **v1.2** (Dec 2025): Added Azure "on your data" grounding rule, audit logging, normalized formatting
-- **v1.1** (Dec 2025): Added Tool & Data Access info, Security & Privacy, ethical guardrails
-- **v1.0** (Dec 2025): Initial public release, based on production deployment at global enterprise software company
+The MIT License applies only to:
+  - /TEMPLATE.md
+  - /examples/cloud-infra.md
+  - /examples/cloud-infra-5.6Sol.md
+  - /examples/incident-response.md
+  - /examples/incident-response-5.6Sol.md
+  - /examples/langchain-agents.md
+  - /examples/langchain-agents-5.6Sol.md
+  - /examples/legal-compliance.md
+  - /examples/legal-compliance-5.6Sol.md
+  - /examples/manufacturing-iot.md
+  - /examples/Network&SecurityAgent.md
+  - /examples/Network&SecurityAgent-5.6Sol.md
+  - /examples/ps1AgentCoder.md
+  - /examples/ps1AgentCoder-5.6Sol.md
+  - /examples/pythonAgentCoder.md
+  - /examples/pythonAgentCoder-5.6Sol.md
+  - /examples/yaragenerator.md
+  - /examples/yaragenerator-5.6Sol.md
 
----
-
-**Built with <a href="https://linktr.ee/cgrady92">❤️</a> for teams who need AI agents that admit when they don't know.**
-<img width="134" height="28" alt="image" src="https://github.com/user-attachments/assets/e546f130-9574-466a-aecd-142ec051c215" />
+All company-specific files, including /examples/veeamGPT.md and
+/examples/veeamGPT-5.6Sol.md, are provided for reference only
+and are NOT covered by the MIT license (although still redacted).
+```

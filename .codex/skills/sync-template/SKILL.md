@@ -1,6 +1,6 @@
 ---
 name: sync-template
-description: Propagate approved TEMPLATE.md contract changes to all examples in each file's own dialect, update version histories, and validate.
+description: Propagate approved TEMPLATE.md contract changes to all examples in each file's own dialect, update TEMPLATE.md's version history, and validate.
 ---
 
 # Sync Template
@@ -22,7 +22,7 @@ git diff $(git merge-base HEAD origin/main) -- TEMPLATE.md
 4. Propagate content to every `examples/*.md` in that file's existing dialect.
 5. If placeholders changed, update README placeholder docs and the preflight contract
    in the same commit.
-6. Update both relevant version histories.
+6. Update TEMPLATE.md's version history (README.md has none by owner decision).
 7. Run:
 
 ```bash

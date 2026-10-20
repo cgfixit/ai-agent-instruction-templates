@@ -46,7 +46,7 @@ Use the `/new-example` command (or follow its instructions manually):
 1. Read `TEMPLATE.md` for the canonical structure.
 2. Create `examples/<domain>.md` — fill every `[PLACEHOLDER]`, keep all core sections.
 3. Include an o3 Reasoning Protocol section (pattern from Network&SecurityAgent.md).
-4. Update `README.md` Repository Structure and Version History.
+4. Update `README.md` Repository Structure, Examples table and license scope.
 
 Suggested domains from the analysis: healthcare/clinical-protocols, legal/compliance, finance/finops, devops/incident-response.
 

@@ -13,7 +13,8 @@ content in `TEMPLATE.md` and `examples/*.md`.
 - `examples/*.md` are deployable, filled-in agent instructions. They must not contain
   leftover `[UPPER_SNAKE_CASE]` placeholders.
 - `README.md` is the public index and the source of truth for placeholder lists,
-  repository structure, license scope, and version history.
+  repository structure, the Examples table, and license scope. It has no version
+  history by owner decision; do not add one.
 - `.github/workflows/` contains the CI gates and non-blocking prose checks.
 - `.codex/skills/` contains Codex-native workflows converted from `.claude/skills/`.
 - `.codex/commands/` contains lightweight repo-local command notes for the main
@@ -40,7 +41,7 @@ content in `TEMPLATE.md` and `examples/*.md`.
 3. Do not fill placeholders in `TEMPLATE.md`.
 4. Do not leave placeholders in `examples/*.md`.
 5. For any add, rename, or delete under `examples/`, update the README structure,
-   license scope, and version history in the same commit.
+   Examples table, and license scope in the same commit.
 6. Before committing Markdown changes, run:
 
 ```bash

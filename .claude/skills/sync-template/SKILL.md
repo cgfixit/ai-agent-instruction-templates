@@ -1,6 +1,6 @@
 ---
 name: sync-template
-description: Propagate a TEMPLATE.md change to all examples in each file's own dialect, bump both version histories, and validate. Use after any edit to TEMPLATE.md's shared contract (sections, rules, placeholders), or when asked to bring examples in line with the template.
+description: Propagate a TEMPLATE.md change to all examples in each file's own dialect, bump TEMPLATE.md's version history, and validate. Use after any edit to TEMPLATE.md's shared contract (sections, rules, placeholders), or when asked to bring examples in line with the template.
 ---
 
 # Sync Template — propagate a TEMPLATE.md change across the library
@@ -67,13 +67,12 @@ also update:
 3. `.claude/skills/preflight/check.sh` C2 expected-count comment (and the three
    lockstep locations if the *exclusion list* changed — see CLAUDE.md).
 
-## Step 5: Bump BOTH version histories
+## Step 5: Bump TEMPLATE.md's version history
 
-- TEMPLATE.md `## Version History`: add the next `- **vX.Y** (Mon YYYY): …` entry.
-- README.md `## Version History`: add the matching entry, modeled on v1.4's
-  ("Added X to TEMPLATE.md and all examples; …").
-These two histories have drifted before (TEMPLATE stalled at v1.2 while README
-reached v1.5) — a sync is the moment to keep them moving together.
+- TEMPLATE.md `## Version History`: add the next `- **vX.Y** (Mon YYYY): …` entry,
+  modeled on v1.4's ("Added X to TEMPLATE.md and all examples; …").
+- README.md has no Version History (owner decision, Oct 2026); do not add one. The
+  PR body and commit message carry the release note.
 
 ## Step 6: Propagation report
 

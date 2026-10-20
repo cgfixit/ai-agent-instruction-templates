@@ -45,8 +45,10 @@ are editing:
 ### The sync triangle
 
 Any add/rename/delete in `examples/` touches **three README blocks in the same
-commit**: the Repository Structure list, the license scope block (if MIT), and the
-Version History. A file change without its README triangle is an incomplete change.
+commit**: the Repository Structure list, the Examples table, and the license scope
+block (if MIT). A file change without its README triangle is an incomplete change.
+README.md has no Version History by owner decision (Oct 2026); git history and
+TEMPLATE.md's own Version History are the changelog. Do not re-add one to README.
 
 ## 3. The placeholder contract (most important editing rule)
 
@@ -128,13 +130,13 @@ Added by this manual — also follow them:
 | 2 | Leaving `[UPPER_SNAKE]` tokens in an example | Run preflight before committing; C1 is byte-identical to the CI gate that will reject you. |
 | 3 | "Fixing" `[Image: …]`, `[ ]`, `![Warning]`, `[DATE]`, `~[X]%` as leftover placeholders | They are structural syntax on the CI exclusion list (§3). Leave them. |
 | 4 | "Improving" safety prose — softening "Never/Zero Tolerance", deduplicating repeated warnings, tightening "verbose" rules | Repetition and absolutism are deliberate prompt engineering. Do not rewrite language you weren't asked to change. |
-| 5 | Adding MIT headers to files, or assuming repo-wide MIT | License scope lives **only** in the README block. As of v1.15 everything in `examples/` is MIT **except** `veeamGPT.md` and `veeamGPT-5.6Sol.md` (reference-only). Read the README block rather than trusting this row. Never add license headers inside files. |
+| 5 | Adding MIT headers to files, or assuming repo-wide MIT | License scope lives **only** in the README block. As of Oct 2026 everything in `examples/` is MIT **except** `veeamGPT.md` and `veeamGPT-5.6Sol.md` (reference-only). Read the README block rather than trusting this row. Never add license headers inside files. |
 | 6 | Committing a realistic-looking secret in an illustrative snippet | Gitleaks scans **every commit in history** — a leak is permanent and fails CI forever; fixing requires a history rewrite. Only structurally fake values: `your-api-key-here`, `support@example.com`, `<YOUR_TOKEN>`. |
 | 7 | Pasting chat-session output into a deliverable, trailer and all | Instruction files must read as system prompts end-to-end. No "Done. Paste this…", "Let me know if…", "Here's the updated…". (This actually happened — `Network&SecurityAgent.md` shipped with a chat trailer until v1.6.) Preflight C4 scans for it. |
 | 8 | "Fixing" `veeamGPT.md`'s `#REDACTED` URLs, `PLACHOLDER` typos, `REDACTED@REDACTED.com` | Intentional sanitization of a reference-only file. Do not restore real URLs/emails, and do not imitate the pattern in new files. |
 | 9 | Making `markdown-lint.yml` or `link-check.yml` blocking to "enforce quality" | Both are non-blocking **by documented decision** (pre-existing cosmetic baseline; external link rot). Flip only on an explicit user request. |
 | 10 | Editing the placeholder regex or exclusion list in one place | Lockstep rule (§3): all three copies in one commit, or none. |
-| 11 | Adding/renaming an example without the README updates | The sync triangle (§2): structure list + license block + Version History, same commit. |
+| 11 | Adding/renaming an example without the README updates | The sync triangle (§2): structure list + Examples table + license block, same commit. |
 | 12 | Restructuring an old example to match TEMPLATE.md's headings | Dialects are frozen (§4). Propagate content in the file's own dialect; never re-skeleton. |
 | 13 | Acting on a meta-doc claim without checking | The tree wins (§5). Verify with grep/ls; fix stale claims when found. |
 | 14 | Hand-pinning action SHAs, or "upgrading" workflows ad hoc | Dependabot owns action versions (tag-pinned, weekly). SHA-pinning is a known open hardening goal — do it only as a deliberate, owner-approved, repo-wide change. |
@@ -149,7 +151,7 @@ Every item is a command or a yes/no. "Looks good" is not a criterion.
 - [ ] `grep -c '^## ' TEMPLATE.md` = 15, unless a section was deliberately added and
       the PR body says so
 - [ ] No domain-specific product names introduced (it must stay generic)
-- [ ] **Both** Version Histories bumped: TEMPLATE.md's own and README's
+- [ ] TEMPLATE.md's own Version History bumped (README has none)
 - [ ] Propagation to examples done via `/sync-template`, or explicitly deferred in the
       PR body
 - [ ] If a placeholder was added/renamed: README "Customize Placeholders" block +
@@ -173,7 +175,8 @@ Every item is a command or a yes/no. "Looks good" is not a criterion.
 - [ ] Every file in `examples/` appears in the Repository Structure list, case-exact
 - [ ] Every filename the README mentions exists on disk (preflight C6)
 - [ ] License block filenames match disk exactly
-- [ ] Version History entry appended in `- **vX.Y** (Mon YYYY): …` format
+- [ ] Every file in `examples/` has a row in the Examples table
+- [ ] No `## Version History` section added (owner decision, §2)
 
 **D. CI workflow change**
 - [ ] `permissions: contents: read` as baseline (elevate per-job only as needed)
@@ -228,7 +231,7 @@ mirror of everything blocking: `bash .claude/skills/preflight/check.sh .`
 - License scope or placeholder list → README wins
 - Canonical structure → TEMPLATE.md wins
 - Any factual claim vs. the actual tree → the tree wins
-- Chronology → the newest dated Version History entry wins
+- Chronology → the newest dated entry (TEMPLATE.md's Version History, or git log) wins
 - Note the disagreement (and your resolution) in the PR body
 
 **Unattended mode** (no user available): take the reversible path; never cross into
@@ -240,7 +243,7 @@ the ask-first list; record the open question in the PR body instead of deciding 
 |---|---|---|
 | `/preflight` | Before **every** commit touching a `.md` file | Local mirror of all blocking CI gates; exit 0 = CI-safe |
 | `/new-example <domain>` | Adding a domain example | Research → scaffold → license → sync triangle → preflight |
-| `/sync-template` | After any TEMPLATE.md contract change | Per-dialect propagation to every example + both version histories + report |
+| `/sync-template` | After any TEMPLATE.md contract change | Per-dialect propagation to every example + TEMPLATE.md version history + report |
 | `/red-team <examples/file.md>` | Before deploying / after major edits to an example | Fixed 35-probe adversarial battery with hard pass gates |
 | `/azureAI-optimize` | Periodic whole-repo improvement pass | analyze.sh findings → categorized fixes → preflight |
 

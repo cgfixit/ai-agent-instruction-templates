@@ -3,8 +3,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Azure AI/ MS Copilot Studio](https://img.shields.io/badge/Azure%20AI-Compatible-0078D4)](https://azure.microsoft.com/en-us/products/ai-services/openai-service)
-[![DevSkim Security Analysis](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/devskim.yml/badge.svg)](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/devskim.yml)
-[![Gitleaks Secret Scan](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/gitleaks.yml/badge.svg)](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/gitleaks.yml)
+[![DevSkim Security Analysis](https://github.com/cgfixit/ai-agent-instruction-templates/actions/workflows/devskim.yml/badge.svg)](https://github.com/cgfixit/ai-agent-instruction-templates/actions/workflows/devskim.yml)
+[![Gitleaks Secret Scan](https://github.com/cgfixit/ai-agent-instruction-templates/actions/workflows/gitleaks.yml/badge.svg)](https://github.com/cgfixit/ai-agent-instruction-templates/actions/workflows/gitleaks.yml)
 
 ---
 
@@ -354,7 +354,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 If you use this template in production or research, a link back to this repo is appreciated:
 
 ```markdown
-AI agent instructions based on the [Universal AI Agent Safety Template](https://github.com/CGFixIt/AzureAI-CopilotStudio-PersonalAgent-Instructions/blob/main/TEMPLATE.md?plain=1)
+AI agent instructions based on the [Universal AI Agent Safety Template](https://github.com/cgfixit/ai-agent-instruction-templates/blob/main/TEMPLATE.md?plain=1)
 ```
 
 ---

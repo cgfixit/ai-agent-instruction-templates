@@ -3,7 +3,7 @@ name: azureAI-optimize
 description: Analyze and optimize this repository — enhance templates/examples for Azure AI o3 personal agents, add CI workflows, harden security, add new domain examples, fix structural gaps.
 ---
 
-Optimize the AzureAI-CopilotStudio-PersonalAgent-Instructions repository. This is a documentation/prompt-engineering library (no build system, no tests). Every deliverable is a Markdown file containing system instructions for enterprise AI personal agents.
+Optimize the ai-agent-instruction-templates repository. This is a documentation/prompt-engineering library (no build system, no tests). Every deliverable is a Markdown file containing system instructions for enterprise AI personal agents.
 
 ## Step 1: Run the analysis driver
 

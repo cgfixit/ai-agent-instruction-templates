@@ -37,12 +37,12 @@ Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot S
 
 **Battle-tested:** v1.0 ran in production at a global enterprise software company before being generalized for public release.
 
-### What every instruction file guarantees
+### Core invariants
 
-Each file expresses these four invariants in its own headings and style:
+`TEMPLATE.md` defines four invariants; the examples carry them in their own headings and style:
 
 1. **3-Tier Source Hierarchy:** Tier 1 official, versioned docs (never overridden) > Tier 2 best practice, cross-checked against Tier 1 > Tier 3 personal/internal notes, advisory and marked as such.
-2. **Mandatory Tutorial Template:** `Purpose` → `Validated against` (exact version + date) → `Requirements` → numbered atomic `Procedure` steps, each with a `✅ Checkpoint` → `Verification`.
+2. **Mandatory Tutorial Template:** `Purpose` → `Validated against` (exact version + date) → `Requirements` → numbered atomic `Procedure` steps, each with a `✅ Checkpoint` → `Verification`. The coding agents and several Sol variants replace it with their own output contracts (code templates, runbooks).
 3. **Version strictness:** refuse when docs are silent, never claim a deprecated feature works in a newer version, never infer environment details.
 4. **Escalation Protocol:** undocumented or edge cases route to a named contact or ticket process, never to a guess.
 
@@ -212,6 +212,7 @@ Clarification resolved: "v4.0" taken as Veeam Backup for AWS 4.0 (build 4.0.0.74
 
 **Requirements**
 - VB-AWS 4.0 appliance deployed and reachable through its web UI; you are signed in with the Portal Administrator role
+- An existing Amazon S3 bucket; the wizard creates or selects a folder inside it
 - A repository IAM role with the documented Repository IAM Permissions (S3 access to the bucket; for KMS also kms:Decrypt, kms:DescribeKey, kms:Encrypt, kms:ListAliases, kms:ListKeys)
 - KMS option: a symmetric customer-managed KMS key in the SAME AWS Region as the bucket, whose key policy grants the repository IAM role access. AWS managed keys are not supported.
 - Password option: a strong password plus hint. Veeam cannot recover a lost password.
@@ -288,7 +289,7 @@ Clarification resolved: "v4.0" taken as Veeam Backup for AWS 4.0 (build 4.0.0.74
 |---|---|---|
 | `placeholder-audit.yml` | Unfilled `[UPPER_SNAKE]` tokens in `examples/` | Yes |
 | `gitleaks.yml` | Secrets across the entire git history | Yes |
-| `devskim.yml` | Static security patterns (SARIF) | Yes |
+| `devskim.yml` | Static security patterns, uploaded as SARIF to Code Scanning | No (runs without `-E`, so findings don't fail the job) |
 | `markdown-lint.yml` | Style per `.markdownlint.jsonc` | No (pre-existing cosmetic baseline) |
 | `link-check.yml` | Dead URLs via lychee | No (external link rot) |
 
@@ -306,7 +307,7 @@ All five run on push and PR to `main`; Gitleaks, DevSkim and the link check also
 
 ## Contributing
 
-Issues and PRs are welcome! Every PR must pass the blocking CI gates; run `bash .claude/skills/preflight/check.sh .` locally first. New examples go through `/new-example <domain>` so the README structure list and license scope move in the same commit. Focus areas:
+Issues and PRs are welcome! Every PR must pass the blocking CI gates; run `bash .claude/skills/preflight/check.sh .` locally first. New examples go through `/new-example <domain>` so the README structure list, Examples table and license scope move in the same commit. Focus areas:
 - **Domain examples**: Healthcare, finance, education, public sector (legal, manufacturing and LangChain are covered — extend them instead)
 - **Integration guides**: AWS Bedrock, Google Vertex AI, Azure AI Foundry Agent Service
 - **Testing strategies**: Automated validation of instruction adherence

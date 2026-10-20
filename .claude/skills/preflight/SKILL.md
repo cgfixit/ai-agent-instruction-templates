@@ -73,7 +73,7 @@ These make the symptom disappear while making the repo worse. Never do them:
 | C1 | `placeholder-audit.yml` | Yes |
 | C5 | `gitleaks.yml` (full history) | Yes |
 | C7 | `markdown-lint.yml` | No (by documented decision) |
-| — | `devskim.yml`, `link-check.yml` | Yes / No — no local mirror; low false-positive risk for prose |
+| — | `devskim.yml`, `link-check.yml` | No / No (DevSkim runs without `-E`) — no local mirror; low false-positive risk for prose |
 
 `/new-example` and `/sync-template` both end by running this skill. If you are
 about to commit and haven't run it, run it.

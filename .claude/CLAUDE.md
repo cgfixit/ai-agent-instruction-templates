@@ -197,7 +197,7 @@ Every item is a command or a yes/no. "Looks good" is not a criterion.
 |---|---|---|
 | `placeholder-audit.yml` | Unfilled tokens in `examples/` | **Yes** |
 | `gitleaks.yml` | Secrets — **entire git history** (`fetch-depth: 0`) | **Yes** |
-| `devskim.yml` | Static security patterns → SARIF | **Yes** |
+| `devskim.yml` | Static security patterns → SARIF | No — runs without `-E` (exit on findings), so findings reach Code Scanning but don't fail the job. Adding `extra-options: -E` would make it blocking; that is an owner decision (§9). |
 | `markdown-lint.yml` | Style (`.markdownlint.jsonc`) | No — by documented decision |
 | `link-check.yml` | Dead URLs (lychee) | No — by documented decision |
 

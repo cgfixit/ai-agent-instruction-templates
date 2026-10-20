@@ -108,7 +108,7 @@ Observed in the repo — follow them:
   normalizer — cosmetic sweeps bury the safety-relevant diff.
 - **LF line endings** (enforced by `.gitattributes`); markdownlint rules MD013/24/33/
   40/41/46 are disabled on purpose for prompt-block formatting.
-- **GitHub Actions are tag-pinned and Dependabot-managed** (weekly, `ci:` commits).
+- **GitHub Actions are commit-SHA-pinned and Dependabot-managed** (weekly, `ci:` commits).
 
 Added by this manual — also follow them:
 
@@ -139,7 +139,7 @@ Added by this manual — also follow them:
 | 11 | Adding/renaming an example without the README updates | The sync triangle (§2): structure list + Examples table + license block, same commit. |
 | 12 | Restructuring an old example to match TEMPLATE.md's headings | Dialects are frozen (§4). Propagate content in the file's own dialect; never re-skeleton. |
 | 13 | Acting on a meta-doc claim without checking | The tree wins (§5). Verify with grep/ls; fix stale claims when found. |
-| 14 | Hand-pinning action SHAs, or "upgrading" workflows ad hoc | Dependabot owns action versions (tag-pinned, weekly). SHA-pinning is a known open hardening goal — do it only as a deliberate, owner-approved, repo-wide change. |
+| 14 | Hand-editing action SHAs, or "upgrading" workflows ad hoc | Dependabot owns action versions (commit-SHA-pinned since v1.8, bumped weekly). Never replace a SHA pin with a tag, and never bump one by hand. |
 
 ## 7. Quality bar per deliverable — checkable criteria
 

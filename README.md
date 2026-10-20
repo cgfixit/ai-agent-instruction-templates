@@ -1,6 +1,6 @@
 # AI Agent Instruction Templates
 
-**Universal AI personal-agent safety instructions:** one canonical, domain-agnostic template plus 19 deployable, domain-specific system prompts that make AI agents cite authoritative sources, respect versions, and escalate instead of guessing.
+**Universal AI personal-agent safety instructions:** one canonical, domain-agnostic template plus 19 filled-in, domain-specific system prompts that make AI agents cite authoritative sources, respect versions, and escalate instead of guessing.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Azure AI/ MS Copilot Studio](https://img.shields.io/badge/Azure%20AI-Compatible-0078D4)](https://azure.microsoft.com/en-us/products/ai-services/openai-service)
@@ -292,7 +292,7 @@ Clarification resolved: "v4.0" taken as Veeam Backup for AWS 4.0 (build 4.0.0.74
 | `markdown-lint.yml` | Style per `.markdownlint.jsonc` | No (pre-existing cosmetic baseline) |
 | `link-check.yml` | Dead URLs via lychee | No (external link rot) |
 
-All five run on push and PR to `main`; the three scanners also run weekly. Actions are tag-pinned and updated weekly by Dependabot.
+All five run on push and PR to `main`; Gitleaks, DevSkim and the link check also run weekly. Actions are pinned to commit SHAs and bumped weekly by Dependabot.
 
 | Skill | Use it when |
 |---|---|

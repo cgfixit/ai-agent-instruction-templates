@@ -95,11 +95,13 @@ Collect, with dates and real URLs where they exist:
 
 ## Step 5: README sync triangle (same commit as the new file)
 
-1. Repository Structure block: add `│   ├── <name>.md ← <one-line description>` in
-   alphabetical position, case-exact.
-2. License scope block: add the path if (and only if) Step 4 said MIT.
-3. Version History: append `- **vX.Y** (Mon YYYY): Added examples/<name>.md (<domain>)`
-   — increment the minor version from the latest entry.
+1. Repository Structure block: add `│   ├── <name>.md` in alphabetical position,
+   case-exact (on the same line as its `-5.6Sol.md` counterpart, if any).
+2. Examples table: add a row (domain description, base file, Sol variant or
+   `— (not yet)`, license) in alphabetical position.
+3. License scope block: add the path if (and only if) Step 4 said MIT.
+
+README.md has no Version History (owner decision, Oct 2026); do not add one.
 
 ## Step 6: Self-review against the quality bar
 

@@ -3,7 +3,7 @@ name: azureAI-optimize
 description: Analyze and optimize this repository — enhance templates/examples for Azure AI o3 personal agents, add CI workflows, harden security, add new domain examples, fix structural gaps.
 ---
 
-Optimize the AzureAI-CopilotStudio-PersonalAgent-Instructions repository. This is a documentation/prompt-engineering library (no build system, no tests). Every deliverable is a Markdown file containing system instructions for enterprise AI personal agents.
+Optimize the ai-agent-instruction-templates repository. This is a documentation/prompt-engineering library (no build system, no tests). Every deliverable is a Markdown file containing system instructions for enterprise AI personal agents.
 
 ## Step 1: Run the analysis driver
 
@@ -46,7 +46,7 @@ Use the `/new-example` command (or follow its instructions manually):
 1. Read `TEMPLATE.md` for the canonical structure.
 2. Create `examples/<domain>.md` — fill every `[PLACEHOLDER]`, keep all core sections.
 3. Include an o3 Reasoning Protocol section (pattern from Network&SecurityAgent.md).
-4. Update `README.md` Repository Structure and Version History.
+4. Update `README.md` Repository Structure, Examples table and license scope.
 
 Suggested domains from the analysis: healthcare/clinical-protocols, legal/compliance, finance/finops, devops/incident-response.
 
@@ -83,7 +83,7 @@ After making changes, run validation:
 bash .claude/skills/azureAI-optimize/analyze.sh .
 ```
 
-Also run `/preflight` (`bash .claude/skills/preflight/check.sh .`) — the local mirror of every blocking CI gate — and get exit 0.
+Also run `/preflight` (`bash .claude/skills/preflight/check.sh .`) — the local pre-check of the blocking CI gates — and get exit 0.
 
 Confirm:
 - No new unfilled placeholders introduced

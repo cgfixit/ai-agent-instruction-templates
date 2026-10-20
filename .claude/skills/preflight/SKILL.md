@@ -28,7 +28,7 @@ informational and mirror the checks CI deliberately runs as non-blocking.
 | **C3** missing core invariant | "Dialect variation is tolerated; invariant omission is not" | Add the missing section in *that file's own dialect* (see the dialect map in CLAUDE.md). Copy the shape from `TEMPLATE.md` or `examples/incident-response.md`, then adapt wording to the file's style. |
 | **C4** chat artifact near end of file | "Instruction files must read as system prompts end-to-end" | Delete the conversational sentence(s). They are output from the chat session that produced the file, not part of the deliverable. |
 | **C5** secret-shaped string | "Never commit anything that looks like a real secret — Gitleaks scans full history" | Replace with an obviously fake value (`your-api-key-here`, `support@example.com`, `<YOUR_TOKEN>`). Never use realistic formats, even invented ones. |
-| **C6** README out of sync | "The sync triangle: examples/ ↔ Repository Structure ↔ license block ↔ Version History, same commit" | Add/correct the README entry (case-exact filenames). If README references a file that doesn't exist, determine which side is wrong before editing — see *Forbidden remediations*. |
+| **C6** README out of sync | "The sync triangle: examples/ ↔ Repository Structure ↔ Examples table ↔ license block, same commit" | Add/correct the README entry (case-exact filenames). If README references a file that doesn't exist, determine which side is wrong before editing — see *Forbidden remediations*. |
 | **C7** markdownlint issues | CI runs this non-blocking by documented decision | Optional cleanup. Do not make the CI job blocking to "enforce" it. |
 
 ## Forbidden remediations
@@ -73,7 +73,7 @@ These make the symptom disappear while making the repo worse. Never do them:
 | C1 | `placeholder-audit.yml` | Yes |
 | C5 | `gitleaks.yml` (full history) | Yes |
 | C7 | `markdown-lint.yml` | No (by documented decision) |
-| — | `devskim.yml`, `link-check.yml` | Yes / No — no local mirror; low false-positive risk for prose |
+| — | `devskim.yml`, `link-check.yml` | No / No (DevSkim runs without `-E`) — no local mirror; low false-positive risk for prose |
 
 `/new-example` and `/sync-template` both end by running this skill. If you are
 about to commit and haven't run it, run it.

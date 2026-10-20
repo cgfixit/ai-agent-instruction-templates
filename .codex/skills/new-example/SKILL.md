@@ -19,8 +19,8 @@ Use this when adding a new domain-specific agent instruction file.
    fictional products.
 6. Add the README sync triangle in the same commit:
    - Repository Structure entry
+   - Examples table row
    - License scope classification
-   - Version History entry
 7. Run:
 
 ```bash

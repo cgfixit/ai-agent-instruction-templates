@@ -297,7 +297,7 @@ All five run on push and PR to `main`; Gitleaks, DevSkim and the link check also
 
 | Skill | Use it when |
 |---|---|
-| `/preflight` | Before every commit touching a `.md` file: local mirror of all blocking gates |
+| `/preflight` | Before every commit touching a `.md` file: local pre-check of the blocking gates (CI's Gitleaks also scans full history) |
 | `/new-example <domain>` | Adding a domain example end to end |
 | `/sync-template` | After a `TEMPLATE.md` contract change, to propagate it to every example |
 | `/red-team examples/<file>.md` | Before deploying, or after major edits to an example |

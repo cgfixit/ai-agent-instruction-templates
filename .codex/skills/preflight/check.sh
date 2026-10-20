@@ -141,7 +141,17 @@ while IFS= read -r name; do
     fail "README.md references '$name' but no such file exists (root or examples/)"
     C6_BAD=1
   }
-done < <(grep -oP '[A-Za-z0-9&_-]+\.md' "$ROOT/README.md" | sort -u)
+done < <(grep -oP '(?<![A-Za-z0-9&_.-])[A-Za-z0-9&][A-Za-z0-9&_.-]*\.md' "$ROOT/README.md" | sort -u)
+# (c) every example on disk has an Examples-table row (a `|` line naming it in backticks)
+#     (captured once, not piped into grep -q: under pipefail an early grep -q exit can SIGPIPE the producer)
+C6_TABLE=$(grep -E '^\|' "$ROOT/README.md" || true)
+for f in "$ROOT"/examples/*.md; do
+  base=$(basename "$f")
+  if ! grep -qF "\`$base\`" <<<"$C6_TABLE"; then
+    fail "README.md Examples table has no row naming \`$base\`"
+    C6_BAD=1
+  fi
+done
 [ "$C6_BAD" -eq 0 ] && pass "README, examples/ and license block agree"
 
 # ── C7. Markdown lint (INFORMATIONAL — CI job is non-blocking by design) ────

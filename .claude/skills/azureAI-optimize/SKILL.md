@@ -83,7 +83,7 @@ After making changes, run validation:
 bash .claude/skills/azureAI-optimize/analyze.sh .
 ```
 
-Also run `/preflight` (`bash .claude/skills/preflight/check.sh .`) — the local mirror of every blocking CI gate — and get exit 0.
+Also run `/preflight` (`bash .claude/skills/preflight/check.sh .`) — the local pre-check of the blocking CI gates — and get exit 0.
 
 Confirm:
 - No new unfilled placeholders introduced

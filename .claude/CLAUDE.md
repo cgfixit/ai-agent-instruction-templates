@@ -201,8 +201,10 @@ Every item is a command or a yes/no. "Looks good" is not a criterion.
 | `markdown-lint.yml` | Style (`.markdownlint.jsonc`) | No — by documented decision |
 | `link-check.yml` | Dead URLs (lychee) | No — by documented decision |
 
-All five run on push/PR to `main`; the security scanners also run weekly. Local
-mirror of everything blocking: `bash .claude/skills/preflight/check.sh .`
+All five run on push/PR to `main`; DevSkim, Gitleaks and link-check also run weekly.
+Local pre-check of the blocking gates: `bash .claude/skills/preflight/check.sh .`
+(C5 regex-scans the current tree only; CI's Gitleaks scans full history, so a secret
+committed and then removed can pass preflight and still fail CI).
 
 ## 9. When uncertain — exact escalation rules
 
@@ -241,7 +243,7 @@ the ask-first list; record the open question in the PR body instead of deciding 
 
 | Skill | Fires when | Guarantee |
 |---|---|---|
-| `/preflight` | Before **every** commit touching a `.md` file | Local mirror of all blocking CI gates; exit 0 = CI-safe |
+| `/preflight` | Before **every** commit touching a `.md` file | Local pre-check of the blocking gates; exit 0 = placeholder audit passes and no secret-shaped strings in the current tree (full-history Gitleaks runs only in CI) |
 | `/new-example <domain>` | Adding a domain example | Research → scaffold → license → sync triangle → preflight |
 | `/sync-template` | After any TEMPLATE.md contract change | Per-dialect propagation to every example + TEMPLATE.md version history + report |
 | `/red-team <examples/file.md>` | Before deploying / after major edits to an example | Fixed 35-probe adversarial battery with hard pass gates |

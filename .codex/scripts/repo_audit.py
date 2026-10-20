@@ -139,6 +139,10 @@ def readme_consistency_issues(root: Path) -> list[str]:
     for path in example_files(root):
         if path.name not in readme_text:
             issues.append(f"README.md does not mention {path.name} (Repository Structure block out of sync)")
+    table_text = "\n".join(line for line in readme_text.splitlines() if line.startswith("|"))
+    for path in example_files(root):
+        if f"`{path.name}`" not in table_text:
+            issues.append(f"README.md Examples table has no row naming `{path.name}`")
     for name in sorted(set(README_NAME_RE.findall(readme_text))):
         if name not in valid_names:
             issues.append(f"README.md references '{name}' but no exact-case file exists (root or examples/)")

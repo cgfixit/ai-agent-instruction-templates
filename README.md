@@ -42,7 +42,7 @@ Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot S
 `TEMPLATE.md` defines four invariants; the examples carry them in their own headings and style:
 
 1. **3-Tier Source Hierarchy:** Tier 1 official, versioned docs (never overridden) > Tier 2 best practice, cross-checked against Tier 1 > Tier 3 personal/internal notes, advisory and marked as such.
-2. **Mandatory Tutorial Template:** `Purpose` → `Validated against` (exact version + date) → `Requirements` → numbered atomic `Procedure` steps, each with a `✅ Checkpoint` → `Verification`. The coding agents and several Sol variants replace it with their own output contracts (code templates, runbooks).
+2. **Mandatory Tutorial Template:** `Purpose` → `Validated against` (exact version + date) → `Requirements` → numbered atomic `Procedure` steps, each with a `✅ Checkpoint` → `Verification`. Coding agents and some Sol variants use their own output contracts instead.
 3. **Version strictness:** refuse when docs are silent, never claim a deprecated feature works in a newer version, never infer environment details.
 4. **Escalation Protocol:** undocumented or edge cases route to a named contact or ticket process, never to a guess.
 
@@ -259,8 +259,8 @@ Clarification resolved: "v4.0" taken as Veeam Backup for AWS 4.0 (build 4.0.0.74
 ## Repository Structure
 
 ```
-├── README.md                ← You are here; authority for placeholders and license scope
-├── TEMPLATE.md              ← Canonical, domain-agnostic system instructions (placeholders unfilled)
+├── README.md                ← You are here
+├── TEMPLATE.md              ← Canonical, domain-agnostic template (placeholders unfilled)
 ├── CLAUDE.md                ← Pointer to .claude/CLAUDE.md
 ├── examples/                ← 19 filled system prompts (see Examples table)
 │   ├── cloud-infra.md · cloud-infra-5.6Sol.md
@@ -289,7 +289,7 @@ Clarification resolved: "v4.0" taken as Veeam Backup for AWS 4.0 (build 4.0.0.74
 |---|---|---|
 | `placeholder-audit.yml` | Unfilled `[UPPER_SNAKE]` tokens in `examples/` | Yes |
 | `gitleaks.yml` | Secrets across the entire git history | Yes |
-| `devskim.yml` | Static security patterns, uploaded as SARIF to Code Scanning | No (runs without `-E`, so findings don't fail the job) |
+| `devskim.yml` | Static security patterns → Code Scanning (SARIF) | No (report-only, no `-E`) |
 | `markdown-lint.yml` | Style per `.markdownlint.jsonc` | No (pre-existing cosmetic baseline) |
 | `link-check.yml` | Dead URLs via lychee | No (external link rot) |
 

@@ -36,9 +36,11 @@ informational and mirror the checks CI deliberately runs as non-blocking.
 These make the symptom disappear while making the repo worse. Never do them:
 
 1. **Never extend the C1 exclusion list to silence a hit.** The exclusion list
-   exists in exactly three lockstep locations (`placeholder-audit.yml`,
-   `analyze.sh`, `check.sh`). It grows only when a *new intentional structural
-   syntax* is introduced deliberately — and then in all three files in one commit,
+   exists in exactly six lockstep locations (`placeholder-audit.yml`, both
+   `analyze.sh` and both `check.sh` copies under `.claude/` and `.codex/`, and
+   `.codex/scripts/repo_audit.py` — see CLAUDE.md §3). It grows only when a *new
+   intentional structural syntax* is introduced deliberately — and then in all six
+   files in one commit,
    with the addition called out in the PR body.
 2. **Never edit `check.sh` to get a failing tree to pass.** The checker models CI;
    changing the model doesn't change CI. (Exception: a deliberate, stated change

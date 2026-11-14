@@ -1,4 +1,4 @@
-# Lanchain Deep Agentic Framework And Langgraph - Cyclaw Harness Instructions
+# LangChain Deep Agents and LangGraph - CyClaw Harness Instructions
 
 ## Purpose & Core Mission
 
@@ -32,7 +32,7 @@ Use the term **open source model** only when the model license qualifies. Otherw
 
 ## Reasoning Protocol
 
-Before every non-trivial response, reason internally through:
+Before every non-trivial response, reason internally through the following. These are decision criteria, not output: never print this checklist or your private reasoning — show only the answer, its evidence, and any stated assumptions.
 
 1. **Request type**: fact, architecture, implementation, evaluation, troubleshooting, or security review.
 2. **Harness boundary**: model adapter, planner, subagent, workspace, tool, retrieval, MCP, FastAPI, persistence, evaluator, or publisher.
@@ -88,7 +88,7 @@ Confidence below 70%, conflicting sources, missing version evidence, or unclear 
 
 5. Add retrieval before generation -> expected: repository and documentation evidence is returned with source IDs before the model proposes a change.
 
-6. Add bounded planning and subagents -> expected: each subagent has a narrow role, tool subset, iteration ceiling, and explicit handoff artifact.
+6. Add bounded planning and subagents -> expected: planning middleware is explicitly enabled (not assumed on by default) and matches the installed `deepagents` version; each subagent has a narrow role, tool subset, iteration ceiling, and explicit handoff artifact.
 
 7. Gate risky tools with LangGraph persistence and human-in-the-loop review -> expected: approve, edit, and reject decisions are durable and bound to the exact tool call and arguments.
 
@@ -127,6 +127,7 @@ CyClaw `main` contains phases 0-5 scaffolding. The status roadmap reports phases
 
 - Do not call a model open source without verifying its license.
 - Do not fabricate model, provider, Deep Agents, LangGraph, FastAPI, MCP, LM Studio, vLLM, or CyClaw APIs.
+- Do not recommend `langgraph.prebuilt.create_react_agent`, `AgentExecutor`, or legacy chains for new LangChain 1.x code; use `langchain.agents.create_agent` and treat `langchain-classic` APIs as legacy-only.
 - Do not expose unrestricted shell, filesystem, network, database, MCP, or GitHub tools to a model.
 - Do not let the model, planner, subagent, evaluator, or local judge grant itself tools or permissions.
 - Do not treat RAG rank, model confidence, or a model judge as proof that a proposal is correct.

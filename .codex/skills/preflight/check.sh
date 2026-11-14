@@ -5,12 +5,14 @@
 # Usage: bash .codex/skills/preflight/check.sh [path-to-repo-root]
 #
 # LOCKSTEP RULE: the placeholder regex and its exclusion list in C1 exist in
-# exactly four places and must stay byte-identical:
+# exactly six places and must stay in sync (the shell copies byte-identical):
 #   1. .github/workflows/placeholder-audit.yml   (the CI gate)
 #   2. .codex/skills/azureai-optimize/analyze.sh (section 1)
 #   3. this file (C1)
 #   4. .codex/scripts/repo_audit.py             (Python Codex entrypoint)
-# Change all four in one commit, or none.
+#   5. .claude/skills/preflight/check.sh         (Claude mirror)
+#   6. .claude/skills/azureAI-optimize/analyze.sh (Claude mirror)
+# Change all six in one commit, or none.
 set -euo pipefail
 ROOT="${1:-.}"
 FAILURES=0

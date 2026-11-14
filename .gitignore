@@ -36,3 +36,7 @@ Thumbs.db
 *.log
 tmp/
 temp/
+
+# Python bytecode (repo_audit.py runs locally; never commit compiled caches)
+__pycache__/
+*.py[cod]

@@ -18,7 +18,7 @@
 
 **The Solution:** five core safety mechanisms, the Key Safety Principles in [`TEMPLATE.md`](TEMPLATE.md): grounding in a tiered source hierarchy, uncertainty handling through escalation, format enforcement via the Mandatory Tutorial Template, version strictness, and hard constraint enforcement. Together they force AI agents to admit uncertainty, cite authoritative sources, and refuse to guess when documentation is silent.
 
-Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot Studio**, **ChatGPT Enterprise Workspace Agents**, **Grok Skills**, **Perplexity Pro or Max Project/Spaces instruction supplement**, **agentic coding harnesses/tools**, **OpenAI Responses API** (successor to the retired Assistants API), **Anthropic Claude Projects and Claude Code**, **generic MCP server connectors**, and similar AI/agent frameworks.
+Designed for real-world deployment in **Microsoft Foundry** (formerly Azure AI Studio / Azure AI Foundry), **Microsoft Copilot Studio** and **Microsoft 365 Copilot agents**, **ChatGPT workspace agents** (Business, Enterprise, Edu), **Grok Skills**, **Perplexity Pro or Max Project/Spaces instruction supplement**, **agentic coding harnesses/tools**, **OpenAI Responses API** (successor to the retired Assistants API), **Anthropic Claude Projects and Claude Code**, **generic MCP server connectors**, and similar AI/agent frameworks.
 
 **Limits:** no instruction file makes an LLM infallible. These files constrain behavior; you still verify it with the [Pre-Deployment Validation](#3-pre-deployment-validation) battery before going live.
 
@@ -28,8 +28,8 @@ Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot S
 
 | Problem | Solution |
 |---------|----------|
-| 🚨 **Hallucinations** | 3-Tier source hierarchy (official internal or highly reputable sources/docs > Marketing Whitepapers > Personal Tech Notes ;) |
-| 📅 **Version drift** | Mandatory version validation in every tutorial via agentic skill/tool call |
+| 🚨 **Hallucinations** | 3-Tier source hierarchy (official versioned docs > vendor best-practice guides & whitepapers > internal/personal notes, advisory only ;) |
+| 📅 **Version drift** | Mandatory `Validated against` line (exact version/build + date) in every tutorial, checked against Tier 1 docs or a grounding tool |
 | 🔐 **Security risks** | Tool scoping + PII protection + audit logging (optional) + sensitive language filters |
 | ❓ **Scope creep** | Environment clarification rules force specificity to ask for clarity on context or state conflicting answers in corpus scope |
 | ⚖️ **Compliance** | Built-in HIPAA/GDPR/SOC2 escalation protocols |
@@ -71,9 +71,18 @@ Run the `sol-optimize` skill (`.codex/skills/sol-optimize/`) before deploying a 
 
 | You are deploying to… | Take… |
 |---|---|
-| Azure OpenAI o3 / o4-mini, Copilot Studio, Claude Projects | the base `examples/<domain>.md` |
-| ChatGPT Enterprise Workspace Agents or the Responses API on GPT-5.6 Sol | the matching `examples/<domain>-5.6Sol.md` |
+| Microsoft Foundry Agent Service, the OpenAI or Azure OpenAI API with a reasoning model, Claude Projects, Claude Code | the base `examples/<domain>.md` (12K–36K characters) |
+| Microsoft 365 Copilot agents (Agent Builder, declarative agents), or any instructions field capped at 8,000 characters | the matching `examples/<domain>-5.6Sol.md` (each under 7,600 characters); no base file fits |
+| ChatGPT workspace agents, or the Responses API on GPT-5.6 Sol | the matching `examples/<domain>-5.6Sol.md` |
 | A domain not covered here | `TEMPLATE.md`, then follow Quick Start below |
+
+**Model lifecycle note (checked 14 Nov 2026):** the base files' Reasoning Protocol was written
+for o3. o3 and o4-mini retire in Microsoft Foundry on 19 Nov 2026 (listed replacements:
+`gpt-5.6-sol` and `gpt-5.6-terra`); on the OpenAI API, o4-mini shut down on 23 Oct 2026 and
+o3 shuts down on 11 Dec 2026. The protocol is not o3-specific, but re-run the
+[validation battery](#3-pre-deployment-validation) on whichever model replaces it. Check the
+[Foundry retirement schedule](https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule)
+and [OpenAI deprecations](https://developers.openai.com/api/docs/deprecations) before you pin a model.
 
 ---
 
@@ -138,13 +147,23 @@ under `.claude/skills/red-team/` (`/red-team examples/<file>.md`).
 
 ### 4. Deploy to Your Platform
 
-#### Azure AI Studio / Copilot Studio
-1. Navigate to your agent configuration
-2. Paste the customized template into the **System Message** field
-3. Enable **"On Your Data"** if using indexed content (recommended)
-4. Test with version-specific queries
+#### Microsoft Foundry (formerly Azure AI Studio / Azure AI Foundry)
+1. Create the agent in Foundry Agent Service. Agents (classic) retire on 31 Mar 2027,
+   so build new agents on the current version.
+2. Paste the customized file into the agent's instructions.
+3. Ground the agent on your Tier 1 documentation with a Foundry IQ knowledge base.
+   Azure OpenAI "On Your Data" was retired on 14 Oct 2026, and migration is not automatic.
+4. Test with version-specific queries.
 
-#### ChatGPT Enterprise Workspace Agents
+#### Microsoft 365 Copilot agents / Copilot Studio
+1. Use the `-5.6Sol.md` variant. Microsoft 365 Copilot caps agent instructions at
+   8,000 characters (Agent Builder and the declarative-agent manifest), and every base file
+   is longer. In Copilot Studio, confirm the current instructions limit before you paste.
+2. Paste the file into the agent's **Instructions** field.
+3. Add Tier 1 documentation as knowledge sources rather than inlining it.
+4. Test with version-specific queries in the test pane.
+
+#### ChatGPT workspace agents (Business, Enterprise, Edu)
 1. Confirm the target role can use Workspace Agents, the selected model, and every
    required app or connector in the active Enterprise workspace.
 2. Create or update a private agent, then paste the applicable `-5.6Sol.md`
@@ -155,15 +174,16 @@ under `.claude/skills/red-team/` (`/red-team examples/<file>.md`).
    and external-action cases, before sharing or publishing the agent.
 
 #### OpenAI Responses API
-The Assistants API was shut down on 26 Aug 2026; use the Responses API and pass the
-instruction file as the `instructions` parameter.
+The Assistants API was shut down on 26 Aug 2026; use the Responses API (plus the
+Conversations API if you need persistent threads) and pass the instruction file as the
+`instructions` parameter.
 
 ```python
 from openai import OpenAI
 
 client = OpenAI()
 response = client.responses.create(
-    model="gpt-5.6",  # pick the model your -5.6Sol.md variant was tuned for
+    model="gpt-5.6-sol",  # the model the -5.6Sol.md variants target; pin exact IDs, aliases can move
     instructions=open("examples/cloud-infra-5.6Sol.md", encoding="utf-8").read(),
     input="Step-by-step: enable S3 Object Lock in Compliance mode",
     tools=[{"type": "file_search", "vector_store_ids": ["<YOUR_TIER1_VECTOR_STORE_ID>"]}],
@@ -173,7 +193,7 @@ print(response.output_text)
 
 #### Anthropic Claude (Projects)
 1. Create a new Project
-2. Paste the template into **Custom Instructions**
+2. Click **Set project instructions**, paste the file, and save
 3. Upload your Tier 1 documentation to the Project knowledge base
 
 #### Claude Code and other agentic coding tools
@@ -276,7 +296,7 @@ Clarification resolved: "v4.0" taken as Veeam Backup for AWS 4.0 (build 4.0.0.74
 ├── .claude/
 │   ├── CLAUDE.md            ← Operating manual for AI-assisted maintenance
 │   └── skills/              ← preflight, new-example, sync-template, red-team, azureAI-optimize
-├── .codex/                  ← Codex mirror of the skills, plus sol-optimize and repo_audit.py
+├── .codex/                  ← Codex mirror of the skills, plus sol-optimize, codex-onboarding, codex-verify, commands/ and repo_audit.py
 ├── .github/                 ← workflows/, CODEOWNERS, dependabot.yml, ISSUE_TEMPLATE/
 └── LICENSE                  ← MIT License (scoped — see License below)
 ```
@@ -309,7 +329,7 @@ All five run on push and PR to `main`; Gitleaks, DevSkim and the link check also
 
 Issues and PRs are welcome! Every PR must pass the blocking CI gates; run `bash .claude/skills/preflight/check.sh .` locally first. New examples go through `/new-example <domain>` so the README structure list, Examples table and license scope move in the same commit. Focus areas:
 - **Domain examples**: Healthcare, finance, education, public sector (legal, manufacturing and LangChain are covered — extend them instead)
-- **Integration guides**: AWS Bedrock, Google Vertex AI, Azure AI Foundry Agent Service
+- **Integration guides**: AWS Bedrock, Google Vertex AI, Microsoft Foundry Agent Service
 - **Testing strategies**: Automated validation of instruction adherence
 - **Localization**: Non-English versions with cultural/regulatory adjustments
 

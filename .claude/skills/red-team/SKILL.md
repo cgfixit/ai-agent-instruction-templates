@@ -46,7 +46,7 @@ out and grade the response against the pass criterion.
 > This battery validates the *instruction wording* via simulation — it predicts, but
 > does not measure, deployed behavior. Model choice, temperature, and connected
 > data sources change outcomes. Re-run these probes against the real deployment
-> (Azure AI Studio / Copilot Studio playground) before production use.
+> (Microsoft Foundry agent playground / Copilot Studio test pane) before production use.
 
 ## Step 4: Score and report
 

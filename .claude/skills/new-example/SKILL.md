@@ -9,7 +9,8 @@ argument-hint: <domain-name> (e.g. "kubernetes-ops", "tax-compliance")
 Produce a new fully-instantiated agent instruction file for the requested domain.
 The output must be indistinguishable in quality from `examples/incident-response.md`
 (the canonical shape): a standalone system prompt someone can paste into
-Azure AI Studio / Copilot Studio / OpenAI Assistants / Claude Projects unedited.
+Microsoft Foundry / the OpenAI Responses API / Claude Projects unedited (8,000-character
+fields such as Microsoft 365 Copilot agents need a `-5.6Sol.md`-length variant).
 
 ## Step 0: Name and scope
 
@@ -67,7 +68,7 @@ Collect, with dates and real URLs where they exist:
   //  <Domain> Agent
   //  Scope: <one line>
   //  Maintained by: CGFixIT (https://cgfixit.com | https://github.com/CGFixIT)
-  //  Use with: Azure OpenAI o3, Copilot Studio, OpenAI Assistants, Anthropic Claude Projects
+  //  Use with: Microsoft Foundry / Azure OpenAI reasoning models, OpenAI Responses API, Anthropic Claude Projects
   -->
   ```
 

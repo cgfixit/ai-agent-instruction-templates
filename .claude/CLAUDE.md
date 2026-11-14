@@ -8,8 +8,10 @@ breaking this repo.
 
 A **documentation / prompt-engineering library**. There is no application code, no
 build system, no test suite, no package manager. Every deliverable is a Markdown file
-containing **system instructions** for enterprise AI personal agents (Azure AI Studio /
-Copilot Studio, OpenAI Assistants, Anthropic Claude Projects).
+containing **system instructions** for enterprise AI personal agents (Microsoft Foundry,
+Copilot Studio / Microsoft 365 Copilot agents, ChatGPT workspace agents, the OpenAI
+Responses API, Anthropic Claude Projects). The OpenAI Assistants API was shut down on
+26 Aug 2026; o3 / o4-mini retire in Microsoft Foundry on 19 Nov 2026.
 
 The product is the **prose and safety structure** of these files. "Passing CI" means
 the scanners find nothing — there is nothing to compile or unit-test. The editing goal
@@ -65,9 +67,13 @@ excludes exactly this structural syntax: `[Image:`, `[Warning]`, `[Note]`,
 never "bugs": `[ ]` checklist boxes, `![Warning]`/`![Troubleshooting]` callouts, and
 runtime-fill values like `~[X]%`.
 
-**Lockstep rule:** that regex + exclusion list exists in exactly three files —
-`.github/workflows/placeholder-audit.yml`, `.claude/skills/azureAI-optimize/analyze.sh`,
-and `.claude/skills/preflight/check.sh`. Change all three in one commit, or none.
+**Lockstep rule:** that regex + exclusion list exists in exactly six files —
+`.github/workflows/placeholder-audit.yml` (the CI gate),
+`.claude/skills/azureAI-optimize/analyze.sh`, `.claude/skills/preflight/check.sh`,
+their Codex mirrors `.codex/skills/azureai-optimize/analyze.sh` and
+`.codex/skills/preflight/check.sh`, and `.codex/scripts/repo_audit.py` (as the
+`PLACEHOLDER_RE` / `ALLOWED_PLACEHOLDERS` pair). Change all six in one commit, or none.
+Recount with `grep -rln 'A-Z0-9_\]{2,}' .github .claude/skills .codex`.
 
 Run it locally anytime: `bash .claude/skills/preflight/check.sh .`
 
@@ -135,7 +141,7 @@ Added by this manual — also follow them:
 | 7 | Pasting chat-session output into a deliverable, trailer and all | Instruction files must read as system prompts end-to-end. No "Done. Paste this…", "Let me know if…", "Here's the updated…". (This actually happened — `Network&SecurityAgent.md` shipped with a chat trailer until v1.6.) Preflight C4 scans for it. |
 | 8 | "Fixing" `veeamGPT.md`'s `#REDACTED` URLs, `PLACHOLDER` typos, `REDACTED@REDACTED.com` | Intentional sanitization of a reference-only file. Do not restore real URLs/emails, and do not imitate the pattern in new files. |
 | 9 | Making `markdown-lint.yml` or `link-check.yml` blocking to "enforce quality" | Both are non-blocking **by documented decision** (pre-existing cosmetic baseline; external link rot). Flip only on an explicit user request. |
-| 10 | Editing the placeholder regex or exclusion list in one place | Lockstep rule (§3): all three copies in one commit, or none. |
+| 10 | Editing the placeholder regex or exclusion list in one place | Lockstep rule (§3): all six copies in one commit, or none. |
 | 11 | Adding/renaming an example without the README updates | The sync triangle (§2): structure list + Examples table + license block, same commit. |
 | 12 | Restructuring an old example to match TEMPLATE.md's headings | Dialects are frozen (§4). Propagate content in the file's own dialect; never re-skeleton. |
 | 13 | Acting on a meta-doc claim without checking | The tree wins (§5). Verify with grep/ls; fix stale claims when found. |
@@ -160,8 +166,12 @@ Every item is a command or a yes/no. "Looks good" is not a criterion.
 **B. Example file (new or edited)**
 - [ ] Preflight C1 = 0 hits (no unfilled tokens)
 - [ ] All core sections present: Purpose/Core Mission, Forbidden Actions, Escalation,
-      Security, Source Hierarchy — plus `## Reasoning Protocol (o3-Optimized)` and
-      `## Response Modes`
+      Security, Source Hierarchy — plus a reasoning-protocol section and a response-modes
+      section in the file's own dialect (new base files: `## Reasoning Protocol
+      (o3-Optimized)` and `## Response Modes`; existing headings vary and are frozen —
+      e.g. `## 2. Reasoning Protocol (o3-Optimized)` / `3. Response Modes` in
+      `Network&SecurityAgent.md`). `-5.6Sol.md` files carry an execution contract and
+      `## Response Modes` instead of a reasoning checklist, by design.
 - [ ] Header comment block present (scope, maintainer, platforms)
 - [ ] ≥ 2 dated, domain-specific critical constraints
 - [ ] A concrete (fake-but-plausible) escalation contact and ticket process ID
